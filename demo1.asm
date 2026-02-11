@@ -1,7 +1,7 @@
 ; origen 100h, el codigo va a empezar en la localidad de memoria 100h (hexadecimal)
 org 100h 
 
-Jmp start ;satar al inicio del programa brinca a donde esta start:
+jmp start ;satar al inicio del programa brinca a donde esta start:
 
 ;DATA SEGMENT                          
 var1 DB 7       ;Guardar databyte (DB) con valor de 7 (var1=7) DB son 8 bits, 1 byte
