@@ -1,17 +1,21 @@
-; origen 100h, el codigo va a empezar en la localidad de memoria 100h (hexadecimal)
+;PROGRAMA QUE MUESTRA EL FUNCIONAMIENTO 
+;DE LA INSTRUCCION SUMA Y RESTA
+
+name "add-sub"
 ORG 100h 
 
-JMP start ;satar al inicio del programa brinca a donde esta start:
+MOV AL,5
+MOV BL,10
 
-;DATA SEGMENT                          
-VAR1 DB 22h       ;se guarda en memoria
+;5+10=15 DECIMAL
+ADD BL,AL   ;BL=BL+AL
 
+SUB BL,1    ;BL=BL-1
 
-START:      ;etiqueta, sirven para hacer brincos                       
-    MOV AL, VAR1    ;contenido de var1, se mueve a AL
-    LEA BX, VAR1    ;lee la direccion de memoria de var1 y se guarda en el registro BX
-    MOV BYTE PTR [BX], 44h  ;se cambia el contenido de VAR1
-    MOV AL, VAR1    ;                                                                                                         
+;int 21h INTERRUPCION
+MOV AH,0 
+INT 16h ;press any key to continue
+
 
 RET ; return, regresa el control al SO, es la ultima instruccion que se debe de tener
 
