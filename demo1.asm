@@ -1,31 +1,38 @@
-;PROGRAMA SUMA HEXADECIMAL Y DESPLEGA EN DEECIMAL
+;PROGRAMA SUMA DE VECTORES
 
-ORG 100h
+org 100h
+jmp start
 
-MOV AH, 01h          ;leer un valor de la entrada estandar
-INT 21h
 
-MOV BL,AL           ;se guarda el valor leido al registro bl 
+vec1 db 1, 2, 1, 6
+vec2 db 3, 5, 7, 1
+vec3 db ?, ?, ?, ?
 
-MOV AH, 01h         ;leer valor de entrada estandar
-INT 21h
+start:
 
-ADD AL,BL           ;suma valors leidos y se guarda en al
-                    ;al=al+bl
-                    
-MOV BL, 30h         ;desplazamiento de los caracteres numericos
-SUB AL,BL           ;al=al-bl
+lea si, vec1        ;ontener la direccion de memoria y posicion inicial
+lea bx, vec2
+lea di, vec3
 
-MOV DL,AL           ;valor a desplegar en la salida estandar
+mov cx, 4           ;numero de veces que se hace la suma
 
-MOV AH, 02h         ;escribe el resultado en la salida estandar
-INT 21h
-
-MOV AH, 02h         ;escribe el resultado en la salida estandar
-
-MOV AH, 0
-INT 16h                 
+sum: 
+    mov ax, [si]    ;el contenido de la direccion de mem SI se pasa a AC
+    add ax, [bx]    ;realiza la suma y el resultado lo guarda en AL
+    mov [di], al    ;guardar el lresultado de la sum aen di=vec3
     
+    add al, 30h     ;desfaza el codigo ascii para que sea un numero
+    
+    mov dl, al
+    mov ah, 02h
+    int 21h         ;imprimir en pantalla
+    
+    inc si          ;cambio a la siguiente posicion del vector
+    inc bx
+    inc di
+    
+    loop sum        ;instruccion que hace un ciclo a la etiqueta sum
+                    ;el numero de veces del ciclo es lo que se encuentra   
     
 RET   
     
