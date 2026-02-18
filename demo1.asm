@@ -8,7 +8,6 @@ msg1 db "dame un numero entero (0...9):", 24h
 msg2 db 0Ah, 0Dh, "dame una letra:", 24h
 
 start:
-    mov [di], al    ;guardar el lresultado de la sum aen di=vec3
     lea dx,msg1        ;poner msg 1 en pantalla
     mov ah,09h
     int 21h
