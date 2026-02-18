@@ -1,38 +1,54 @@
-;PROGRAMA SUMA DE VECTORES
+;PROGRAMA IMPRIMIR LETRA UN NUMERO DE VECES ESPECIFICO
 
 org 100h
 jmp start
 
 
-vec1 db 1, 2, 1, 6
-vec2 db 3, 5, 7, 1
-vec3 db ?, ?, ?, ?
+msg1 db "dame un numero entero (0...9):", 24h 
+msg2 db 0Ah, 0Dh, "dame una letra:", 24h
 
 start:
-
-lea si, vec1        ;ontener la direccion de memoria y posicion inicial
-lea bx, vec2
-lea di, vec3
-
-mov cx, 4           ;numero de veces que se hace la suma
-
-sum: 
-    mov ax, [si]    ;el contenido de la direccion de mem SI se pasa a AC
-    add ax, [bx]    ;realiza la suma y el resultado lo guarda en AL
     mov [di], al    ;guardar el lresultado de la sum aen di=vec3
+    lea dx,msg1        ;poner msg 1 en pantalla
+    mov ah,09h
+    int 21h
     
-    add al, 30h     ;desfaza el codigo ascii para que sea un numero
+    mov ah,01h
+    int 21h
     
-    mov dl, al
-    mov ah, 02h
-    int 21h         ;imprimir en pantalla
+    sub al,30h
     
-    inc si          ;cambio a la siguiente posicion del vector
-    inc bx
-    inc di
+    cmp al,0
+    je stop
     
-    loop sum        ;instruccion que hace un ciclo a la etiqueta sum
-                    ;el numero de veces del ciclo es lo que se encuentra   
+    mov cl,al
+    
+    lea dx,msg2
+    mov ah,09h
+    int 21h
+    
+    mov ah,01h
+    int 21h
+    
+    mov bl,al
+    
+    mov dl,0Ah
+    mov ah,02h
+    int 21h
+    
+    mov dl,0Dh
+    mov ah,02h
+    int 21h
+    
+    mov dl,bl
+    
+    
+ciclo: 
+    mov ah,02h
+    int 21h
+    
+    loop ciclo
+stop:
     
 RET   
     
