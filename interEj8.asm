@@ -108,13 +108,8 @@ imprimir:
     int 21h             
     loop imprimir       ; Repite segun la cantidad de digitos guardados en CX
 
-    ret
 imprimirNum endp
 
 end start
 
 ret
-
-
-
-
