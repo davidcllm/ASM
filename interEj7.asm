@@ -64,4 +64,8 @@ siguienteChar:
 terminarConversion:
     ; Finalizar programa
     mov ah, 4Ch         ; Funcion DOS para terminar el proceso
-    int 21h             ; Devuelve el control al sistema operativo
+    int 21h             ; Devuelve el control al sistema operativo      
+    
+end start
+
+ret
