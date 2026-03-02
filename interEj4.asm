@@ -30,8 +30,7 @@ start:
 
     mov ah, 0Ah                     ; lee linea completa
     lea dx, buffer                  ;comprueba que contenga el tamano maximo permitido
-    
-    mov byte ptr [buffer], BUFSIZE-2    ;
+    ;mov byte ptr [buffer], BUFSIZE-2    
     int 21h
 
     ;preparar indices
