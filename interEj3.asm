@@ -7,8 +7,8 @@ org 100h
 jmp start
 
 ;vectores
-vecA db 1,3,4,6,8,3,0       ;vector A
-vecB db 2,4,6,3,8,9,2       ;vector B
+vecA db 1, 3, 5, 6, 8, 3, 0       ;vector A
+vecB db 2, 4, 6, 3, 8, 9, 2       ;vector B
 n db 7                      ;tamano de los vectores
 
 msg1 db 0Dh,0Ah, 'Interseccion: $'       ;mensaje que se imprime antes del resultado
